@@ -38,7 +38,7 @@ var Events = {
         data = data || ''; 
         var obj = Callbacks[at] || {};
         for (var prop in obj) { 
-            if (obj.hasOwnProperty(prop) && typeof obj.prop === 'function') { 
+            if (obj.hasOwnProperty(prop) && typeof obj[prop] === 'function') { 
                 obj[prop](data);
             } 
         }
