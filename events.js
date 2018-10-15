@@ -35,16 +35,20 @@ var Events = {
     },
     t: (at, data) => { return Events.trigger(at, data) },
     trigger: (at, data) => {
-        data = data || ''; 
+        data = data || '';
         var obj = Callbacks[at] || {};
-        for (var prop in obj) { 
-            if (obj.hasOwnProperty(prop) && typeof obj[prop] === 'function') { 
+        for (var prop in obj) {
+            if (obj.hasOwnProperty(prop) && typeof obj[prop] === 'function') {
                 obj[prop](data);
-            } 
+            }
         }
     },
     rm: (at, id) => { return Events.remove(at, id) },
-    remove: (at, id) => { delete Callbacks[at][id] },
+    remove: (at, id) => {
+        if (Callbacks[at]) {
+            delete Callbacks[at][id]
+        }
+        },
     removeAll: (at) => { delete Callbacks[at] }
 };
 
