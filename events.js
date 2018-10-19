@@ -45,10 +45,10 @@ var Events = {
     },
     rm: (at, id) => { return Events.remove(at, id) },
     remove: (at, id) => {
-        if (Callbacks[at]) {
+        if (Callbacks[at] && Callbacks[at][id]) {
             delete Callbacks[at][id]
         }
-        },
+    },
     removeAll: (at) => { delete Callbacks[at] }
 };
 
